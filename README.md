@@ -1,7 +1,33 @@
+[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
+![](./record.gif)
+
 ---
+
+### The project
+The goal of this project is to design a proportional-integral-derivative (PID) controller in order to keep the center of the lane of a track of the Udacity simulator.
+
+At each timestamp the controller receives from the simulator the car's lateral displacement from the center of the road.
+Based on this error the controller computes a steer command that is then sent back to the simulator and actuated.
+
+The tuning of the three PID parameters has been done manually and following these general guidelines:
+* Increasing the proportional gain (Kp) reduces the vehicle time response but at the same time increases overshoot, also leading to instability.
+* Increasing the integral gain (Ki) reduces the steady-state error but, if chosen too big, can lead to system's instability.
+* Increasing the derivative gain (Kd) generally introduces stability, reducing the oscillatory behavior. Since it acts on the derivative of the error attention must be paid on this parameter: a huge delta error would lead to a spike in the control action.
+
+Here is reported the final set of parameter:
+* Kp = 0.15  (P)
+* Ki = 0.001 (I)
+* Kd = 1.2   (D)
+
+### Reflections
+* The car is able to perform the full track without accidents.
+* Since an integral action is used, an anti wind-up system should also be considered to manage the cases when the control input saturates.
+* Oscillations are generally always present. A more advanced control techniques (such as LQR or MPC) should be used here to integrate vehicle model and information ahead of the ego-vehicle (such as heading angle and road curvature)
+
 
 ## Dependencies
 
@@ -19,7 +45,7 @@ Self-Driving Car Engineer Nanodegree Program
   * Run either `./install-mac.sh` or `./install-ubuntu.sh`.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
-    git clone https://github.com/uWebSockets/uWebSockets 
+    git clone https://github.com/uWebSockets/uWebSockets
     cd uWebSockets
     git checkout e94b6e1
     ```
@@ -33,66 +59,7 @@ Fellow students have put together a guide to Windows set-up for the project [her
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
+4. Run it: `./pid`.
 
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
-
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
-
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
-for instructions and the project rubric.
-
-## Hints!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-
-## Call for IDE Profiles Pull Requests
-
-Help your fellow students!
-
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
-
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 
