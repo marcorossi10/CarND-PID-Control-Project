@@ -26,7 +26,7 @@ void PID::UpdateError(double cte)
   /**
    * TODO: Update PID errors based on cte.
    */
-  d_error_ = (cte - p_error_) / 1; //delta_t is;
+  d_error_ = (cte - p_error_) / 1; //division by delta_t to compute the derivative error;
   p_error_ = cte;
   i_error_ = cte + i_error_;
 }
