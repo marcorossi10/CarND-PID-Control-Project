@@ -43,9 +43,9 @@ int main()
    */
 
   //PID tuning parameters
-  double Kp = 0.15;
-  double Ki = 0.001;
-  double Kd = 1.2;
+  double Kp = 0.10;
+  double Ki = 0.004;
+  double Kd = 1.4;
 
   pid.Init(Kp, Ki, Kd);
 

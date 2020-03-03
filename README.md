@@ -19,9 +19,9 @@ The tuning of the three PID parameters has been done manually and following thes
 * Increasing the derivative gain (Kd) generally introduces stability, reducing the oscillatory behavior. Since it acts on the derivative of the error attention must be paid on this parameter: a huge delta error would lead to a spike in the control action.
 
 Here is reported the final set of parameters:
-* Kp = 0.15  (P)
-* Ki = 0.001 (I)
-* Kd = 1.2   (D)
+* Kp = 0.10  (P)
+* Ki = 0.004 (I)
+* Kd = 1.4   (D)
 
 ### Reflections
 * The car is able to perform the full track without accidents.
